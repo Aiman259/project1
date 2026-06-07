@@ -1,45 +1,34 @@
 package com.example.instructorapi.service;
 
-import com.example.instructorapi.dto.CreateInstructorRequest;
 import com.example.instructorapi.model.Instructor;
+import com.example.instructorapi.Repository.InstructorRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import java.util.ArrayList;
 import java.util.List;
-import java.util.UUID;
 
 @Service
 public class InstructorService {
+    @Autowired
+    private InstructorRepository repository;
 
-    private final List<Instructor> instructors = new ArrayList<>();
-
-    // 2 Sample instructors at startup (Keperluan Sukses GET)
-    public InstructorService() {
-        instructors.add(new Instructor("1", "Ahmad Fauzi", "fauzi@gmail.com", "Electrical Engineering", 5));
-        instructors.add(new Instructor("2", "Siti Aminah", "aminah@academic.com", "Web Development", 3));
+    public List<Instructor> getAll() {
+        return repository.findAll();
     }
 
-    // Ambil semua data
-    public List<Instructor> getAllInstructors() {
-        return instructors;
+    public Instructor getById(String id) {
+        return repository.findById(id).orElse(null);
     }
 
-    // Method baru untuk POST: Tambah instructor ke dalam list
-    public Instructor addInstructor(CreateInstructorRequest request) {
-        // Guna UUID untuk generate ID rawak yang unik supaya tak bertembung
-        String generatedId = UUID.randomUUID().toString();
+    public Instructor create(Instructor instructor) {
+        return repository.save(instructor);
+    }
 
-        // Map DTO data ke Model Instructor
-        Instructor newInstructor = new Instructor(
-                generatedId,
-                request.getName(),
-                request.getEmail(),
-                request.getSpecialization(),
-                request.getYearsExperience());
+    public Instructor update(String id, Instructor instructor) {
+        instructor.setId(id);
+        return repository.save(instructor);
+    }
 
-        // Simpan dalam memori list
-        instructors.add(newInstructor);
-
-        // Pulangkan balik data yang berjaya dicipta
-        return newInstructor;
+    public void delete(String id) {
+        repository.deleteById(id);
     }
 }

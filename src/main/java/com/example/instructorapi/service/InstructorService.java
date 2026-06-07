@@ -4,17 +4,55 @@ import com.example.instructorapi.model.Instructor;
 import com.example.instructorapi.Repository.InstructorRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import java.util.List;
+import org.springframework.data.domain.*;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import java.util.*;
 
 @Service
 public class InstructorService {
+
+    // 1. Inisialisasi Logger
+    private static final Logger logger = LoggerFactory.getLogger(InstructorService.class);
+
     @Autowired
     private InstructorRepository repository;
 
-    public List<Instructor> getAll() {
-        return repository.findAll();
+    public Page<Instructor> getAll(String keyword, String specialization, int page, int size, String[] sort) {
+
+        // 2. Logging setiap parameter yang diterima
+        logger.info("Menerima request: keyword={}, specialization={}, page={}, size={}, sort={}",
+                keyword, specialization, page, size, Arrays.toString(sort));
+
+        Pageable pageable = createPageable(page, size, sort);
+
+        if (keyword != null && !keyword.isEmpty()) {
+            logger.info("Melakukan carian berdasarkan keyword: {}", keyword);
+            return repository.findByNameContainingIgnoreCase(keyword, pageable);
+        } else if (specialization != null && !specialization.isEmpty()) {
+            logger.info("Melakukan filter berdasarkan specialization: {}", specialization);
+            return repository.findBySpecialization(specialization, pageable);
+        }
+
+        logger.info("Menampilkan semua data (tiada carian/filter)");
+        return repository.findAll(pageable);
     }
 
+    private Pageable createPageable(int page, int size, String[] sort) {
+        List<Sort.Order> orders = new ArrayList<>();
+        if (sort != null) {
+            for (String s : sort) {
+                String[] parts = s.split(",");
+                Sort.Direction dir = (parts.length > 1 && parts[1].equalsIgnoreCase("desc"))
+                        ? Sort.Direction.DESC
+                        : Sort.Direction.ASC;
+                orders.add(new Sort.Order(dir, parts[0]));
+            }
+        }
+        return PageRequest.of(page, size, Sort.by(orders));
+    }
+
+    // Method lain...
     public Instructor getById(String id) {
         return repository.findById(id).orElse(null);
     }

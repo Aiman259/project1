@@ -1,31 +1,39 @@
 package com.example.instructorapi.controller;
 
-import com.example.instructorapi.dto.CreateInstructorRequest;
 import com.example.instructorapi.model.Instructor;
 import com.example.instructorapi.service.InstructorService;
-import jakarta.validation.Valid; // Pastikan import yang ni
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-
 import java.util.List;
 
 @RestController
 @RequestMapping("/api/instructors")
 public class InstructorController {
-
-    private final InstructorService instructorService;
-
-    public InstructorController(InstructorService instructorService) {
-        this.instructorService = instructorService;
-    }
+    @Autowired
+    private InstructorService service;
 
     @GetMapping
-    public List<Instructor> getAllInstructors() {
-        return instructorService.getAllInstructors();
+    public List<Instructor> getAll() {
+        return service.getAll();
     }
 
-    // Tambah @Valid kat sini!
+    @GetMapping("/{id}")
+    public Instructor getById(@PathVariable String id) {
+        return service.getById(id);
+    }
+
     @PostMapping
-    public Instructor createInstructor(@Valid @RequestBody CreateInstructorRequest request) {
-        return instructorService.addInstructor(request);
+    public Instructor create(@RequestBody Instructor instructor) {
+        return service.create(instructor);
+    }
+
+    @PutMapping("/{id}")
+    public Instructor update(@PathVariable String id, @RequestBody Instructor instructor) {
+        return service.update(id, instructor);
+    }
+
+    @DeleteMapping("/{id}")
+    public void delete(@PathVariable String id) {
+        service.delete(id);
     }
 }

@@ -1,26 +1,17 @@
 package com.example.instructorapi.model;
 
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
+
+@Document(collection = "instructors")
 public class Instructor {
-    private String id; // Kita tambah ID untuk senang bezakan instructor nanti
+    @Id
+    private String id;
     private String name;
     private String email;
     private String specialization;
-    private int yearsExperience;
 
-    // 1. Constructor Kosong (No-args constructor)
-    public Instructor() {
-    }
-
-    // 2. Constructor Berparameter (All-args constructor)
-    public Instructor(String id, String name, String email, String specialization, int yearsExperience) {
-        this.id = id;
-        this.name = name;
-        this.email = email;
-        this.specialization = specialization;
-        this.yearsExperience = yearsExperience;
-    }
-
-    // 3. Getters and Setters
+    // Getter & Setter
     public String getId() {
         return id;
     }
@@ -51,13 +42,5 @@ public class Instructor {
 
     public void setSpecialization(String specialization) {
         this.specialization = specialization;
-    }
-
-    public int getYearsExperience() {
-        return yearsExperience;
-    }
-
-    public void setYearsExperience(int yearsExperience) {
-        this.yearsExperience = yearsExperience;
     }
 }

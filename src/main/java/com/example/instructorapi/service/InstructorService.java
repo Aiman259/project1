@@ -1,7 +1,7 @@
 package com.example.instructorapi.service;
 
+import com.example.instructorapi.repository.InstructorRepository;
 import com.example.instructorapi.model.Instructor;
-import com.example.instructorapi.Repository.InstructorRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.data.domain.*;
@@ -12,7 +12,7 @@ import java.util.*;
 @Service
 public class InstructorService {
 
-    // 1. Inisialisasi Logger
+    // 1. Initialize Logger
     private static final Logger logger = LoggerFactory.getLogger(InstructorService.class);
 
     @Autowired
@@ -20,21 +20,21 @@ public class InstructorService {
 
     public Page<Instructor> getAll(String keyword, String specialization, int page, int size, String[] sort) {
 
-        // 2. Logging setiap parameter yang diterima
-        logger.info("Menerima request: keyword={}, specialization={}, page={}, size={}, sort={}",
+        // 2. Log incoming request parameters
+        logger.info("Received request: keyword={}, specialization={}, page={}, size={}, sort={}",
                 keyword, specialization, page, size, Arrays.toString(sort));
 
         Pageable pageable = createPageable(page, size, sort);
 
         if (keyword != null && !keyword.isEmpty()) {
-            logger.info("Melakukan carian berdasarkan keyword: {}", keyword);
+            logger.info("Searching by keyword: {}", keyword);
             return repository.findByNameContainingIgnoreCase(keyword, pageable);
         } else if (specialization != null && !specialization.isEmpty()) {
-            logger.info("Melakukan filter berdasarkan specialization: {}", specialization);
+            logger.info("Filtering by specialization: {}", specialization);
             return repository.findBySpecialization(specialization, pageable);
         }
 
-        logger.info("Menampilkan semua data (tiada carian/filter)");
+        logger.info("Displaying all data (no search/filter applied)");
         return repository.findAll(pageable);
     }
 
@@ -52,7 +52,7 @@ public class InstructorService {
         return PageRequest.of(page, size, Sort.by(orders));
     }
 
-    // Method lain...
+    // CRUD Methods
     public Instructor getById(String id) {
         return repository.findById(id).orElse(null);
     }

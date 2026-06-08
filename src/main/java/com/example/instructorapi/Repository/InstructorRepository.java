@@ -1,11 +1,11 @@
-package com.example.instructorapi.Repository;
+package com.example.instructorapi.repository;
 
 import com.example.instructorapi.model.Instructor;
 import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable; // WAJIB TAMBAH INI
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.mongodb.repository.MongoRepository;
-import java.util.List;
 import org.springframework.stereotype.Repository;
+import java.util.List;
 
 @Repository
 public interface InstructorRepository extends MongoRepository<Instructor, String> {
@@ -13,12 +13,11 @@ public interface InstructorRepository extends MongoRepository<Instructor, String
     // Untuk search nama
     List<Instructor> findByNameContainingIgnoreCase(String keyword);
 
-    // Untuk filter specialization (tanpa pagination - kalau perlu)
+    // Untuk filter specialization
     List<Instructor> findBySpecialization(String specialization);
 
-    // Untuk filter specialization + pagination (DENGAN pageable)
+    // Untuk pagination
     Page<Instructor> findByNameContainingIgnoreCase(String keyword, Pageable pageable);
 
     Page<Instructor> findBySpecialization(String specialization, Pageable pageable);
-    }
-
+}

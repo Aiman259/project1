@@ -2,12 +2,20 @@ package com.example.instructorapi;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.annotation.Bean;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 
 @SpringBootApplication
 public class InstructorapiApplication {
 
-	public static void main(String[] args) {
-		SpringApplication.run(InstructorapiApplication.class, args);
-	}
+    public static void main(String[] args) {
+        SpringApplication.run(InstructorapiApplication.class, args);
+    }
 
+    // Tambahkan ini di sini secara sementara untuk selesaikan ralat
+    @Bean
+    public PasswordEncoder passwordEncoder() {
+        return new BCryptPasswordEncoder();
+    }
 }

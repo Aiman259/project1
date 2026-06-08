@@ -4,6 +4,7 @@ import com.example.instructorapi.model.Instructor;
 import com.example.instructorapi.service.InstructorService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -13,9 +14,6 @@ public class InstructorController {
     @Autowired
     private InstructorService service;
 
-    // Endpoint: GET /api/instructors
-    // Contoh:
-    // /api/instructors?keyword=Ahmad&specialization=Backend&page=0&size=5&sort=name,asc
     @GetMapping
     public Page<Instructor> getAll(
             @RequestParam(required = false) String keyword,
@@ -27,27 +25,26 @@ public class InstructorController {
         return service.getAll(keyword, specialization, page, size, sort);
     }
 
-    // Endpoint: GET /api/instructors/{id}
+    // Fungsi tunggal untuk getById
     @GetMapping("/{id}")
-    public Instructor getById(@PathVariable String id) {
-        return service.getById(id);
+    public ResponseEntity<Instructor> getById(@PathVariable String id) {
+        return ResponseEntity.ok(service.getById(id));
     }
 
-    // Endpoint: POST /api/instructors
     @PostMapping
-    public Instructor create(@RequestBody Instructor instructor) {
-        return service.create(instructor);
+    public ResponseEntity<Instructor> create(@RequestBody Instructor instructor) {
+        return ResponseEntity.ok(service.create(instructor));
     }
 
-    // Endpoint: PUT /api/instructors/{id}
     @PutMapping("/{id}")
-    public Instructor update(@PathVariable String id, @RequestBody Instructor instructor) {
-        return service.update(id, instructor);
+    public ResponseEntity<Instructor> update(@PathVariable String id, @RequestBody Instructor instructor) {
+        return ResponseEntity.ok(service.update(id, instructor));
     }
 
-    // Endpoint: DELETE /api/instructors/{id}
     @DeleteMapping("/{id}")
-    public void delete(@PathVariable String id) {
+    public ResponseEntity<Void> delete(@PathVariable String id) {
         service.delete(id);
+        return ResponseEntity.noContent().build();
     }
 }
+

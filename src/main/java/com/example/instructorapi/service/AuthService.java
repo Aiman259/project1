@@ -26,7 +26,6 @@ public class AuthService {
         this.passwordEncoder = passwordEncoder;
     }
 
-    // REGISTER USER
     public String registerUser(RegisterRequest request) {
         if (userRepository.existsByEmail(request.getEmail())) {
             throw new RuntimeException("Email is already in use!");
@@ -36,16 +35,13 @@ public class AuthService {
         user.setName(request.getName());
         user.setEmail(request.getEmail());
         user.setPassword(passwordEncoder.encode(request.getPassword()));
-        
-        // Tetapkan role sebagai USER secara default
-        // Pastikan dalam model User anda, setRole menerima String atau Enum
+        // Default sebagai USER
         user.setRole(Role.USER); 
 
         userRepository.save(user);
         return "User registered successfully";
     }
 
-    // LOGIN USER
     public AuthResponse login(LoginRequest request) {
         User user = userRepository.findByEmail(request.getEmail())
                 .orElseThrow(() -> new RuntimeException("Email not found"));
@@ -54,9 +50,8 @@ public class AuthService {
             throw new RuntimeException("Invalid password");
         }
 
-        // Jana token sebenar menggunakan JwtUtils
-        // Kita juga perlu pastikan role dimasukkan ke dalam token supaya SecurityConfig boleh baca
-        String token = jwtUtils.generateToken(user.getEmail());
+        // Hantar role ke dalam token
+        String token = jwtUtils.generateToken(user.getEmail(), user.getRole().name());
 
         return new AuthResponse(
                 token,

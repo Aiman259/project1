@@ -12,10 +12,5 @@ public class InstructorapiApplication {
     public static void main(String[] args) {
         SpringApplication.run(InstructorapiApplication.class, args);
     }
-
-    // Tambahkan ini di sini secara sementara untuk selesaikan ralat
-    @Bean
-    public PasswordEncoder passwordEncoder() {
-        return new BCryptPasswordEncoder();
-    }
 }
+

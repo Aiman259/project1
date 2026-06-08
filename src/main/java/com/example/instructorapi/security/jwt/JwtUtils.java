@@ -43,4 +43,14 @@ public class JwtUtils {
             return false;
         }
     }
+
+    public String generateToken(String username, String role) { // Tambah parameter role
+    return Jwts.builder()
+            .setSubject(username)
+            .claim("role", role) // Masukkan role sebagai claim
+            .setIssuedAt(new Date())
+            .setExpiration(new Date((new Date()).getTime() + jwtExpirationMs))
+            .signWith(getSigningKey(), SignatureAlgorithm.HS512)
+            .compact();
+}
 }

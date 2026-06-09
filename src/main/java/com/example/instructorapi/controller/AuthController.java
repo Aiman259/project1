@@ -1,11 +1,13 @@
 package com.example.instructorapi.controller;
 
-import com.example.instructorapi.dto.AuthResponse;
 import com.example.instructorapi.dto.LoginRequest;
-import com.example.instructorapi.dto.RegisterRequest;
-import com.example.instructorapi.service.AuthService;
+import com.example.instructorapi.security.jwt.JwtUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -13,21 +15,18 @@ import org.springframework.web.bind.annotation.*;
 public class AuthController {
 
     @Autowired
-    private AuthService authService;
+    AuthenticationManager authenticationManager;
 
-    @PostMapping("/register")
-    public ResponseEntity<String> register(@RequestBody RegisterRequest request) {
-        return ResponseEntity.ok(authService.registerUser(request));
-    }
+    @Autowired
+    JwtUtils jwtUtils;
 
-    // Gabungkan login dan try-catch di sini
     @PostMapping("/login")
-    public ResponseEntity<?> login(@RequestBody LoginRequest loginRequest) {
-        try {
-            return ResponseEntity.ok(authService.login(loginRequest));
-        } catch (Exception e) {
-            e.printStackTrace(); // Sekarang log akan keluar di terminal!
-            return ResponseEntity.status(500).body("Error: " + e.getMessage());
-        }
+    public ResponseEntity<?> authenticateUser(@RequestBody LoginRequest loginRequest) {
+        Authentication authentication = authenticationManager.authenticate(
+                new UsernamePasswordAuthenticationToken(loginRequest.getEmail(), loginRequest.getPassword()));
+
+        SecurityContextHolder.getContext().setAuthentication(authentication);
+       String jwt = jwtUtils.generateToken(authentication.getName());
+        return ResponseEntity.ok("Token anda: " + jwt);
     }
 }

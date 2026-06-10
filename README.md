@@ -5,5 +5,9 @@
 <img width="641" height="700" alt="image" src="https://github.com/user-attachments/assets/af78b4ba-698a-4de2-94c6-7c431204ef0f" />
 <img width="643" height="768" alt="image" src="https://github.com/user-attachments/assets/e9646b26-3c0c-4515-9c91-e48574773cf0" />
 <img width="643" height="770" alt="image" src="https://github.com/user-attachments/assets/1c43262f-6c0b-47f9-81d2-8f66f783ffdb" />
+<img width="646" height="703" alt="image" src="https://github.com/user-attachments/assets/33643080-89f5-46d8-8277-fd13c1205836" />
+<img width="647" height="735" alt="image" src="https://github.com/user-attachments/assets/edd26d80-1f6a-403a-aac1-900ec4903c07" />
+<img width="640" height="767" alt="image" src="https://github.com/user-attachments/assets/06262c2c-3725-49cf-ad5b-5565e1155339" />
+<img width="637" height="760" alt="image" src="https://github.com/user-attachments/assets/b308e5a6-3eb0-4f78-87ce-a44303c42632" />
 
 # project1

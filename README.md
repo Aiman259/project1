@@ -1,6 +1,253 @@
-<img width="636" height="476" alt="3d4b19f2-b8c0-48ca-986e-2fc9f4fe2780" src="https://github.com/user-attachments/assets/81221bad-884e-4ae3-98a2-273e8be91c5e" />
-<img width="633" height="546" alt="4a124306-1f92-406a-b1a0-7d028cc30c00" src="https://github.com/user-attachments/assets/7d43a025-e41e-4cea-bdd0-6bacfbea2b1a" />
-<img width="626" height="565" alt="92e1f616-a635-4afe-a83c-2dc62acf2db9" src="https://github.com/user-attachments/assets/0b464d23-884f-40da-95c8-e67321c959bd" />
-<img width="633" height="522" alt="4ec18850-5fec-43a8-a7cc-2e008fd0f723" src="https://github.com/user-attachments/assets/4f04eb40-2c8f-4ba2-88c5-deedf4ab5510" />
-<img width="1024" height="610" alt="75688c90-6ae7-416c-9620-e63c7598ba5c" src="https://github.com/user-attachments/assets/304c0ad1-2830-4070-9609-3e156b379f63" />
 # project1
+
+# Event Booking System
+
+## Project Overview
+
+Event Booking System is a full-stack web application developed using React, Spring Boot, MongoDB, JWT Authentication, and Docker.
+
+The system allows users to browse available events, view event details, make bookings, and manage their reservations online. Administrators can manage events, monitor bookings, and generate booking reports through a secure dashboard.
+
+---
+
+## Problem Statement
+
+Many small event organizers still manage registrations manually using spreadsheets and messaging applications. This process is inefficient, difficult to track, and prone to human error.
+
+This project provides a centralized web-based solution for event management and online booking.
+
+---
+
+## Project Objectives
+
+* Develop a full-stack web application using React and Spring Boot.
+* Implement JWT-based authentication and authorization.
+* Manage event and booking information using MongoDB.
+* Provide booking and reporting functionality for administrators.
+* Apply business rules and validation for booking management.
+
+---
+
+## Technology Stack
+
+### Frontend
+
+* React.js
+* React Router DOM
+* Tailwind CSS
+
+### Backend
+
+* Spring Boot
+* Spring Security
+* JWT Authentication
+
+### Database
+
+* MongoDB
+
+### Deployment
+
+* Docker
+* Docker Compose
+
+---
+
+## User Roles
+
+### Admin
+
+* Create events
+* Edit events
+* Delete events
+* View all bookings
+* View dashboard reports
+* Monitor revenue information
+
+### User
+
+* Register account
+* Login securely
+* Browse available events
+* View event details
+* Book events
+* View personal bookings
+* Cancel bookings
+
+---
+
+## Main Features
+
+### Authentication
+
+* User Registration
+* User Login
+* JWT Authentication
+* Role-Based Access Control
+
+### Event Management
+
+* Create Event
+* Edit Event
+* Delete Event
+* Search Event
+* Sort Event
+* View Event Details
+
+### Booking Management
+
+* Book Event
+* View My Bookings
+* Cancel Booking
+* Automatic Seat Updates
+
+### Reporting
+
+* Total Bookings
+* Total Revenue
+* Bookings Per Event Report
+
+---
+
+## Business Rules
+
+* Email must be unique.
+* Users cannot book inactive events.
+* Users cannot book sold-out events.
+* Users cannot book past events.
+* Seats are automatically reduced after booking.
+* Seats are automatically restored after cancellation.
+* Revenue is calculated based on event bookings.
+
+---
+
+## MongoDB Collections
+
+### Users
+
+* id
+* fullName
+* email
+* password
+* role
+* createdAt
+
+### Events
+
+* id
+* title
+* description
+* category
+* venue
+* eventDate
+* price
+* capacity
+* seatsAvailable
+* status
+
+### Bookings
+
+* id
+* userEmail
+* eventId
+* eventTitle
+* bookingDate
+
+---
+
+## API Endpoints
+
+### Authentication
+
+POST /api/auth/register
+
+POST /api/auth/login
+
+### Events
+
+GET /api/v1/courses
+
+GET /api/v1/courses/{id}
+
+POST /api/v1/courses
+
+PUT /api/v1/courses/{id}
+
+DELETE /api/v1/courses/{id}
+
+### Bookings
+
+POST /api/v1/bookings
+
+GET /api/v1/bookings
+
+GET /api/v1/bookings/user/{email}
+
+DELETE /api/v1/bookings/{id}
+
+### Reports
+
+GET /api/v1/bookings/summary
+
+GET /api/v1/bookings/report/events
+
+---
+
+## Setup Instructions
+
+### Start Docker Containers
+
+docker compose up --build -d
+
+### Access Application
+
+Frontend:
+http://localhost:5173
+
+Backend:
+http://localhost:8081
+
+MongoDB:
+mongodb://localhost:27017
+
+---
+
+## Aggregation / Reporting Feature
+
+Implemented MongoDB reporting features:
+
+* Total Bookings
+* Total Revenue
+* Bookings Per Event
+
+These reports help administrators analyze event performance and booking activity.
+
+---
+
+## Challenges Faced
+
+* Integrating React frontend with Spring Boot backend.
+* Implementing JWT authentication and authorization.
+* Managing seat availability after booking and cancellation.
+* Implementing event validation rules.
+* Building dashboard reporting features.
+
+---
+
+## Future Improvements
+
+* Event image upload
+* Dashboard charts
+* Advanced event filtering
+* CSV export functionality
+* Mobile responsive enhancements
+
+---
+
+## Developer
+
+Aiman Firdaus
+
+Capstone Project 2026
+
+Event Booking System

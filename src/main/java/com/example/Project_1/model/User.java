@@ -9,7 +9,7 @@ public class User {
     private String id;
     private String name;
     private String email;
-    private String password; // Nota: Dalam realiti, password perlu di-hash (bukan plain text)
+    private String password; 
     private Role role;
 
     // Constructor, Getters & Setters

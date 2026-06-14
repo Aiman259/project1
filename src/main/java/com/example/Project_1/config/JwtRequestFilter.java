@@ -28,17 +28,15 @@ public class JwtRequestFilter extends OncePerRequestFilter {
 
         final String authHeader = request.getHeader("Authorization");
 
-        // 1. Baca Authorization header & check jika bermula dengan "Bearer "
+        
         if (authHeader != null && authHeader.startsWith("Bearer ")) {
-            String jwt = authHeader.substring(7); // 2. Ekstrak token (buang "Bearer ")
+            String jwt = authHeader.substring(7);
 
             // 3. Validasi token
             if (jwtUtil.validateToken(jwt)) {
                 String email = jwtUtil.getEmailFromToken(jwt);
                 String role = jwtUtil.getRoleFromToken(jwt);
 
-                // 4. Load User Details & set authentication dalam Security Context
-                // Penting: Tambahkan prefix "ROLE_" untuk hasRole() di SecurityConfig berfungsi
                 UsernamePasswordAuthenticationToken auth = new UsernamePasswordAuthenticationToken(
                         email, null, Collections.singletonList(new SimpleGrantedAuthority("ROLE_" + role.toUpperCase())));
                 

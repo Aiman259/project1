@@ -1,252 +1,209 @@
-# project1
-# Event Booking System
+# Instructor API Documentation
 
-## Project Overview
-
-Event Booking System is a full-stack web application developed using React, Spring Boot, MongoDB, JWT Authentication, and Docker.
-
-The system allows users to browse available events, view event details, make bookings, and manage their reservations online. Administrators can manage events, monitor bookings, and generate booking reports through a secure dashboard.
+## Base URL
+`http://localhost:8081/api/v1`
 
 ---
 
-## Problem Statement
+## Authentication
 
-Many small event organizers still manage registrations manually using spreadsheets and messaging applications. This process is inefficient, difficult to track, and prone to human error.
+### Register
+**POST** `/api/auth/register`
 
-This project provides a centralized web-based solution for event management and online booking.
-
----
-
-## Project Objectives
-
-* Develop a full-stack web application using React and Spring Boot.
-* Implement JWT-based authentication and authorization.
-* Manage event and booking information using MongoDB.
-* Provide booking and reporting functionality for administrators.
-* Apply business rules and validation for booking management.
-
----
-
-## Technology Stack
-
-### Frontend
-
-* React.js
-* React Router DOM
-* Tailwind CSS
-
-### Backend
-
-* Spring Boot
-* Spring Security
-* JWT Authentication
-
-### Database
-
-* MongoDB
-
-### Deployment
-
-* Docker
-* Docker Compose
-
----
-
-## User Roles
-
-### Admin
-
-* Create events
-* Edit events
-* Delete events
-* View all bookings
-* View dashboard reports
-* Monitor revenue information
-
-### User
-
-* Register account
-* Login securely
-* Browse available events
-* View event details
-* Book events
-* View personal bookings
-* Cancel bookings
-
----
-
-## Main Features
-
-### Authentication
-
-* User Registration
-* User Login
-* JWT Authentication
-* Role-Based Access Control
-
-### Event Management
-
-* Create Event
-* Edit Event
-* Delete Event
-* Search Event
-* Sort Event
-* View Event Details
-
-### Booking Management
-
-* Book Event
-* View My Bookings
-* Cancel Booking
-* Automatic Seat Updates
-
-### Reporting
-
-* Total Bookings
-* Total Revenue
-* Bookings Per Event Report
-
----
-
-## Business Rules
-
-* Email must be unique.
-* Users cannot book inactive events.
-* Users cannot book sold-out events.
-* Users cannot book past events.
-* Seats are automatically reduced after booking.
-* Seats are automatically restored after cancellation.
-* Revenue is calculated based on event bookings.
-
----
-
-## MongoDB Collections
-
-### Users
-
-* id
-* fullName
-* email
-* password
-* role
-* createdAt
-
-### Events
-
-* id
-* title
-* description
-* category
-* venue
-* eventDate
-* price
-* capacity
-* seatsAvailable
-* status
-
-### Bookings
-
-* id
-* userEmail
-* eventId
-* eventTitle
-* bookingDate
-
----
-
-## API Endpoints
-
-### Authentication
-
-POST /api/auth/register
-
+* **Security:** Public
+* **Request Body:**
+```json
+{ 
+"username": "admin", 
+"password": "password123", 
+"role": "ADMIN"
+}
+Login
 POST /api/auth/login
 
-### Events
+Security: Public
 
-GET /api/v1/courses
+Request Body:
 
-GET /api/v1/courses/{id}
+JSON
+{ 
+"username": "admin", 
+"password": "password123"
+}
+Response Body (JWT Token):
 
-POST /api/v1/courses
+JSON
+{ 
+"token": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbmFpbWFuQGV4YW1wbGUuY29tIiwicm9sZXMiOiJBRE1JTiIsIm lhdCI6MTc4MTA3OTIzMywiZXhwIjoxNzgxMTY1NjMzfQ.LXAC_tldIGXV7hF-ZSxAbXmqIhjzW1jdHprLp1Y73Eg"
+}
+Instructor CRUD Endpoints
+Get All Instructors
+GET /api/v1/instructors
 
-PUT /api/v1/courses/{id}
+Security: Public
 
-DELETE /api/v1/courses/{id}
+Response Body:
 
-### Bookings
+JSON
+{ 
+"content": [ 
+{ 
+"id": "6a28c985b405519aba3682d4", 
+"name": "Aiman ​​Firdaus", 
+"specialization": "Java & AI", 
+"active": false, 
+"yearsExperience": 0 
+}, 
+{ 
+"id": "6a28c985b405519aba3682d5", 
+"name": "Sarah Lee", 
+"specialization": "Frontend Development", 
+"active": false, 
+"yearsExperience": 0 
+}, 
+{ 
+"id": "6a2906a516d0745a200b5e65", 
+"name": "John Doe Updated", 
+"specialization": "Software Engineering", 
+"active": true, 
+"yearsExperience": 5 
+}, 
+{ 
+"id": "6a2909b9daef7919ede38c56", 
+"name": "John Doe Updated", 
+"specialization": "Software Engineering", 
+"active": true, 
+"yearsExperience": 10 
+}, 
+{ 
+"id": "6a2916c15251267a287f8acd", 
+"name": "Alice Tan", 
+"specialization": "Java", 
+"active": true, 
+"yearsExperience": 5 
+} 
+], 
+"page": { 
+"size": 5, 
+"number": 0, 
+"totalElements": 5, 
+"totalPages": 1 
+}
+}
+Create Instructor
+POST /api/v1/instructors
 
-POST /api/v1/bookings
+Security: Requires Authentication (USER / ADMIN)
 
-GET /api/v1/bookings
+Request Body:
 
-GET /api/v1/bookings/user/{email}
+JSON
+{ 
+"id": "6a2916c15251267a287f8acd", 
+"name": "Alice Tan", 
+"specialization": "Java", 
+"active": true, 
+"yearsExperience": 0
+}
+Instructor update
+PUT /api/v1/instructors/{id}
 
-DELETE /api/v1/bookings/{id}
+Security: Requires Authentication (USER / ADMIN)
 
-### Reports
+Request Body:
 
-GET /api/v1/bookings/summary
+JSON
+{ 
+"name": "Alice Tan", 
+"specialization": "Java", 
+"yearsOfExperience": 5
+}
+Delete Instructor
+DELETE /api/v1/instructors/{id}
 
-GET /api/v1/bookings/report/events
+Security: Requires Authentication (ADMIN)
 
----
+Example Request: DELETE /api/v1/instructors/6a2916c15251267a287f8acd
 
-## Setup Instructions
+Search & Pagination
+Search Endpoint
+GET /api/v1/instructors/search?keyword={keyword}
 
-### Start Docker Containers
+Security: Public
 
-docker compose up --build -d
+Example Request: GET /api/v1/instructors/search?keyword=Aiman
 
-### Access Application
+Response Body Example:
 
-Frontend:
-http://localhost:5173
+JSON
+{ 
+"content": [ 
+{ 
+"id": "6a28c985b405519aba3682d4", 
+"name": "Aiman ​​Firdaus", 
+"specialization": "Java & AI", 
+"active": false, 
+"yearsExperience": 0 
+} 
+], 
+"page": { 
+"size": 5, 
+"number": 0, 
+"totalElements": 1, 
+"totalPages": 1 
+}
+}
+Pagination Endpoint
+GET /api/v1/instructors?page={pageNumber}&size={pageSize}
 
-Backend:
-http://localhost:8081
+Security: Public
 
-MongoDB:
-mongodb://localhost:27017
+Example Request: GET /api/v1/instructors?page=0&size=5
 
----
+Response Body: (Same as Get All Instructors documentation)
 
-## Aggregation / Reporting Feature
+Reporting Endpoints
+Report by Status
+GET /api/v1/reports/instructors/by-status
 
-Implemented MongoDB reporting features:
+Security: Public
 
-* Total Bookings
-* Total Revenue
-* Bookings Per Event
+Response Body:
 
-These reports help administrators analyze event performance and booking activity.
+JSON
+[ 
+{ 
+"status": "ACTIVE", 
+"totalInstructors": 3 
+}, 
+{ 
+"status": "INACTIVE", 
+"totalInstructors": 2 
+}
+]
+Report by Specialization
+GET /api/v1/reports/instructors/by-specialization
 
----
+Security: Public
 
-## Challenges Faced
+Response Body:
 
-* Integrating React frontend with Spring Boot backend.
-* Implementing JWT authentication and authorization.
-* Managing seat availability after booking and cancellation.
-* Implementing event validation rules.
-* Building dashboard reporting features.
-
----
-
-## Future Improvements
-
-* Event image upload
-* Dashboard charts
-* Advanced event filtering
-* CSV export functionality
-* Mobile responsive enhancements
-
----
-
-## Developer
-
-Aiman Firdaus
-
-Capstone Project 2026
-
-Event Booking System
+JSON
+[ 
+{ 
+"specialization": "Software Engineering", 
+"totalInstructors": 2 
+}, 
+{ 
+"specialization": "Java & AI", 
+"totalInstructors": 1 
+}, 
+{ 
+"specialization": "Frontend Development", 
+"totalInstructors": 1 
+}, 
+{ 
+"specialization": "Java", 
+"totalInstructors": 1 
+}
+]

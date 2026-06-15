@@ -1,0 +1,12 @@
+[
+  { "title": "Java Programming Basics", "description": "Learn core Java", "duration": "4 weeks" },
+  { "title": "Advanced Spring Boot", "description": "Build scalable APIs", "duration": "8 weeks" },
+  { "title": "React Frontend Masterclass", "description": "Modern UI development", "duration": "6 weeks" },
+  { "title": "MongoDB Essentials", "description": "NoSQL database design", "duration": "3 weeks" },
+  { "title": "Docker for Developers", "description": "Containerization basics", "duration": "2 weeks" },
+  { "title": "Microservices Architecture", "description": "Building distributed systems", "duration": "10 weeks" },
+  { "title": "Cybersecurity Fundamentals", "description": "Protect your applications", "duration": "5 weeks" },
+  { "title": "UI/UX Design Principles", "description": "User-centric design", "duration": "4 weeks" },
+  { "title": "Cloud Computing with AWS", "description": "Deploy to the cloud", "duration": "7 weeks" },
+  { "title": "Python for Data Science", "description": "Data analysis basics", "duration": "6 weeks" }
+]

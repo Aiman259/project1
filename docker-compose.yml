@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 services:
   mongodb:
     image: mongo:latest
@@ -36,4 +37,44 @@ networks:
     driver: bridge
 
 volumes:
+=======
+services:
+  mongodb:
+    image: mongo:latest
+    ports:
+      - "27017:27017"
+    networks:
+      - my-network
+    restart: always
+    volumes:
+      - mongo-data:/data/db 
+
+  backend:
+    build: ./Project-1
+    ports:
+      - "8081:8081"
+    environment:
+      - SPRING_DATA_MONGODB_URI=mongodb://mongodb:27017/project1_db
+      - LOGGING_LEVEL_ROOT=DEBUG 
+      - SPRING_PROFILES_ACTIVE=dev 
+    depends_on:
+      - mongodb
+    networks:
+      - my-network
+    restart: always
+
+  frontend:
+    build: ./instructor-frontend
+    ports:
+      - "5173:80"
+    networks:
+      - my-network
+    restart: always
+
+networks:
+  my-network:
+    driver: bridge
+
+volumes:
+>>>>>>> 2da1f07b5ce106004b8f6c0685e46b349830bf28
   mongo-data:

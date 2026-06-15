@@ -12,13 +12,13 @@ The system allows users to browse available events, view event details, make boo
 
 ## Login Page
 
-[Insert Login Page Screenshot]
+<img width="1706" height="981" alt="image" src="https://github.com/user-attachments/assets/9136aef6-79dc-4ccd-b7d5-45f5e4bf6cc2" />
 
 ---
 
 ## Register Page
 
-[Insert Register Page Screenshot]
+<img width="1706" height="981" alt="image" src="https://github.com/user-attachments/assets/8e159e44-f6ef-4647-b43d-54b2496df760" />
 
 ---
 

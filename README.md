@@ -300,7 +300,7 @@ mongodb://localhost:27017
 
 ---
 
-## Aggregation / Reporting Feature
+## Reporting Feature
 
 Implemented MongoDB reporting features:
 

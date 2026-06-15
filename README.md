@@ -26,23 +26,35 @@ The system allows users to browse available events, view event details, make boo
 
 ### Admin Dashboard
 
-[Insert Dashboard Screenshot]
+<img width="1706" height="987" alt="image" src="https://github.com/user-attachments/assets/d444e257-b442-4d72-8045-c96d3047e0b3" />
 
-### Event Management
 
-[Insert Event Management Screenshot]
+### Event
+
+<img width="1185" height="941" alt="image" src="https://github.com/user-attachments/assets/ea257020-368d-42db-83fb-a5763b86c954" />
+<img width="1704" height="930" alt="image" src="https://github.com/user-attachments/assets/f44a6819-fdda-4892-a5d4-b2b10ac5e1f2" />
+<img width="1706" height="938" alt="image" src="https://github.com/user-attachments/assets/1ebd21e5-51ec-4e94-add2-cb1bd0a4e190" />
 
 ### Create Event
 
-[Insert Create Event Screenshot]
+<img width="1706" height="938" alt="image" src="https://github.com/user-attachments/assets/0df96724-bcc3-431b-abe1-7a74cbadcb65" />
+<img width="1700" height="933" alt="image" src="https://github.com/user-attachments/assets/99545b15-5ee4-4f34-88ed-4ed40ac948d6" />
+
 
 ### Edit Event
 
-[Insert Edit Event Screenshot]
+<img width="1706" height="918" alt="image" src="https://github.com/user-attachments/assets/24854983-be54-4d73-a47b-6d03c7207f0e" />
+<img width="1698" height="949" alt="image" src="https://github.com/user-attachments/assets/54b207d5-e1d6-4c6c-8b5c-c89586bbb3da" />
 
-### Revenue Report
+### Event Details
 
-[Insert Revenue Report Screenshot]
+<img width="1706" height="937" alt="image" src="https://github.com/user-attachments/assets/ac6718ec-3149-485b-9b2f-469b03143f55" />
+
+
+### Home
+
+<img width="1704" height="934" alt="image" src="https://github.com/user-attachments/assets/f00fd556-74ec-452b-830a-30abf301974d" />
+
 
 ---
 
@@ -50,19 +62,26 @@ The system allows users to browse available events, view event details, make boo
 
 ### Event Listing
 
-[Insert Event Listing Screenshot]
+<img width="1702" height="935" alt="image" src="https://github.com/user-attachments/assets/32aee0a4-59a1-45f5-b8cd-ce3500a6e9b7" />
+
+<img width="1706" height="954" alt="image" src="https://github.com/user-attachments/assets/127a08a9-efbc-409b-896f-dc3dc468ed2b" />
+
+<img width="1706" height="935" alt="image" src="https://github.com/user-attachments/assets/c0a9757d-96fb-4ad6-b682-499e355ecf1e" />
 
 ### Event Details
 
-[Insert Event Details Screenshot]
 
-### My Bookings
+<img width="1706" height="940" alt="image" src="https://github.com/user-attachments/assets/922e8f26-6ce7-489e-a1d0-7d61248221ab" />
 
-[Insert My Bookings Screenshot]
+### My BooKings
 
-### Booking Confirmation
+<img width="1706" height="938" alt="image" src="https://github.com/user-attachments/assets/321ede7f-74c9-4d95-912b-dfccbff4ff0d" />
 
-[Insert Booking Screenshot]
+
+### Home
+
+<img width="1706" height="935" alt="image" src="https://github.com/user-attachments/assets/e6e83509-acda-497f-a605-03f1b2cff748" />
+
 
 ---
 

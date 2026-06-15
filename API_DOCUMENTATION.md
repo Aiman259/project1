@@ -1,8 +1,8 @@
 # API Documentation
 
-## Event Booking System
+# Event Booking System
 
-### Base URL
+## Base URL
 
 ```text
 http://localhost:8081
@@ -31,7 +31,7 @@ POST /api/auth/register
 }
 ```
 
-### Response
+### Success Response
 
 ```text
 User registered successfully!
@@ -56,7 +56,7 @@ POST /api/auth/login
 }
 ```
 
-### Response
+### Success Response
 
 ```json
 {
@@ -82,6 +82,27 @@ GET /api/v1/courses
 
 Retrieve all available events with pagination support.
 
+### Sample Response
+
+```json
+{
+  "content": [
+    {
+      "id": "6a2fd4c192511d8f837b13eb",
+      "title": "Food & Music Carnival",
+      "description": "Enjoy live music performances, food trucks and family-friendly activities.",
+      "category": "Entertainment",
+      "venue": "Batu Pahat Stadium",
+      "eventDate": "2026-07-30",
+      "price": 20.0,
+      "capacity": 800,
+      "seatsAvailable": 793,
+      "status": "ACTIVE"
+    }
+  ]
+}
+```
+
 ---
 
 ## Get Event By ID
@@ -89,12 +110,25 @@ Retrieve all available events with pagination support.
 ### Endpoint
 
 ```http
-GET /api/v1/courses/{id}
+GET /api/v1/courses/6a2fd4c192511d8f837b13eb
 ```
 
-### Description
+### Sample Response
 
-Retrieve a specific event using its ID.
+```json
+{
+  "id": "6a2fd4c192511d8f837b13eb",
+  "title": "Food & Music Carnival",
+  "description": "Enjoy live music performances, food trucks and family-friendly activities.",
+  "category": "Entertainment",
+  "venue": "Batu Pahat Stadium",
+  "eventDate": "2026-07-30",
+  "price": 20.0,
+  "capacity": 800,
+  "seatsAvailable": 793,
+  "status": "ACTIVE"
+}
+```
 
 ---
 
@@ -122,12 +156,19 @@ POST /api/v1/courses
 }
 ```
 
-### Response
+### Sample Response
 
 ```json
 {
-  "id": "event_id",
+  "id": "6a2fd50560198964d1ffaacd",
   "title": "UTHM Cultural Festival 2026",
+  "description": "Annual cultural festival featuring traditional performances, food stalls and exhibitions.",
+  "category": "Festival",
+  "venue": "UTHM Main Hall",
+  "eventDate": "2026-09-20",
+  "price": 15.0,
+  "capacity": 500,
+  "seatsAvailable": 500,
   "status": "ACTIVE"
 }
 ```
@@ -139,12 +180,41 @@ POST /api/v1/courses
 ### Endpoint
 
 ```http
-PUT /api/v1/courses/{id}
+PUT /api/v1/courses/6a2fd50560198964d1ffaacd
 ```
 
-### Description
+### Request Body
 
-Update event information.
+```json
+{
+  "title": "UTHM Cultural Festival 2026 Updated",
+  "description": "Updated cultural festival information.",
+  "category": "Festival",
+  "venue": "UTHM Main Hall",
+  "eventDate": "2026-09-25",
+  "price": 30,
+  "capacity": 600,
+  "seatsAvailable": 600,
+  "status": "ACTIVE"
+}
+```
+
+### Sample Response
+
+```json
+{
+  "id": "6a2fd50560198964d1ffaacd",
+  "title": "UTHM Cultural Festival 2026 Updated",
+  "description": "Updated cultural festival information.",
+  "category": "Festival",
+  "venue": "UTHM Main Hall",
+  "eventDate": "2026-09-25",
+  "price": 30,
+  "capacity": 600,
+  "seatsAvailable": 600,
+  "status": "ACTIVE"
+}
+```
 
 ---
 
@@ -153,12 +223,14 @@ Update event information.
 ### Endpoint
 
 ```http
-DELETE /api/v1/courses/{id}
+DELETE /api/v1/courses/6a2fd50560198964d1ffaacd
 ```
 
-### Description
+### Sample Response
 
-Delete an event from the system.
+```text
+Course deleted successfully
+```
 
 ---
 
@@ -172,9 +244,26 @@ Delete an event from the system.
 POST /api/v1/bookings
 ```
 
-### Description
+### Request Body
 
-Create a booking for an event.
+```json
+{
+  "userEmail": "Ali@gmail.com",
+  "eventId": "6a2fd4e292511d8f837b13f1"
+}
+```
+
+### Sample Response
+
+```json
+{
+  "id": "6a2ffdb660198964d1ffaad7",
+  "userEmail": "Ali@gmail.com",
+  "eventId": "6a2fd4e292511d8f837b13f1",
+  "eventTitle": "Health & Wellness Expo",
+  "bookingDate": "2026-06-15T21:27:18.923"
+}
+```
 
 ---
 
@@ -185,10 +274,6 @@ Create a booking for an event.
 ```http
 GET /api/v1/bookings
 ```
-
-### Description
-
-Retrieve all bookings in the system.
 
 ### Sample Response
 
@@ -211,18 +296,22 @@ Retrieve all bookings in the system.
 ### Endpoint
 
 ```http
-GET /api/v1/bookings/user/{email}
-```
-
-### Example
-
-```http
 GET /api/v1/bookings/user/Amin@gmail.com
 ```
 
-### Description
+### Sample Response
 
-Retrieve bookings belonging to a specific user.
+```json
+[
+  {
+    "id": "6a2fdcb060198964d1ffaad0",
+    "userEmail": "Amin@gmail.com",
+    "eventId": "6a2fd4c192511d8f837b13eb",
+    "eventTitle": "Food & Music Carnival",
+    "bookingDate": "2026-06-15T19:06:24.368"
+  }
+]
+```
 
 ---
 
@@ -231,12 +320,14 @@ Retrieve bookings belonging to a specific user.
 ### Endpoint
 
 ```http
-DELETE /api/v1/bookings/{id}
+DELETE /api/v1/bookings/6a2ffdb660198964d1ffaad7
 ```
 
-### Description
+### Sample Response
 
-Delete a booking record.
+```text
+Booking deleted successfully
+```
 
 ---
 
@@ -288,31 +379,31 @@ GET /api/v1/bookings/report/events
 
 The system implements JWT Authentication and Role-Based Access Control (RBAC).
 
-### Public Endpoints
+## Public Endpoints
 
-* POST /api/auth/register
-* POST /api/auth/login
-* GET /api/v1/courses
-* GET /api/v1/courses/{id}
+- POST /api/auth/register
+- POST /api/auth/login
+- GET /api/v1/courses
+- GET /api/v1/courses/{id}
 
-### Admin Only Endpoints
+## Admin Only Endpoints
 
-* POST /api/v1/courses
-* PUT /api/v1/courses/{id}
-* DELETE /api/v1/courses/{id}
-* DELETE /api/v1/bookings/{id}
+- POST /api/v1/courses
+- PUT /api/v1/courses/{id}
+- DELETE /api/v1/courses/{id}
+- DELETE /api/v1/bookings/{id}
 
 ---
 
 # Business Rules
 
-* Email must be unique.
-* Users cannot book inactive events.
-* Users cannot book sold-out events.
-* Users cannot book past events.
-* Seats are automatically reduced after successful bookings.
-* Seats are restored after booking cancellation.
-* Revenue is calculated automatically based on booking data.
+- Email must be unique.
+- Users cannot book inactive events.
+- Users cannot book sold-out events.
+- Users cannot book past events.
+- Seats are automatically reduced after successful bookings.
+- Seats are restored after booking cancellation.
+- Revenue is calculated automatically based on booking data.
 
 ---
 
@@ -321,4 +412,6 @@ The system implements JWT Authentication and Role-Based Access Control (RBAC).
 Aiman Firdaus
 
 Capstone Project 2026
+
+Event Booking System
 
